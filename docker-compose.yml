@@ -24,12 +24,27 @@ services:
       - JAEGER_AGENT_HOST=jaeger
       - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
+      - APP_TMP_DATA=/tmp  # <-- Added environment variable for temp data, so run as non-root user
+
+    # Added resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:latest
     ports:
-      - 9000:80
+      - 9002:80
     restart: unless-stopped
+    
+    # Added resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 
   db:
     image: library/postgres:15-alpine
@@ -45,6 +60,13 @@ services:
       - POSTGRES_USER=saleor
       - POSTGRES_PASSWORD=saleor
 
+    # Added resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+
   redis:
     image: library/redis:7.0-alpine
     ports:
@@ -54,6 +76,13 @@ services:
       - saleor-backend-tier
     volumes:
       - saleor-redis:/data
+
+    # Added resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 
   worker:
     image: ghcr.io/saleor/saleor:3.20
@@ -70,6 +99,13 @@ services:
     volumes:
       # shared volume between worker and api for media
       - saleor-media:/app/media
+
+    # Added resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 
   jaeger:
     image: jaegertracing/all-in-one
@@ -88,6 +124,13 @@ services:
       - type: tmpfs
         target: /tmp
 
+    # Added resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+
   mailpit:
     image: axllent/mailpit
     ports:
@@ -96,6 +139,13 @@ services:
     restart: unless-stopped
     networks:
       - saleor-backend-tier
+
+    # Added resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
 
 volumes:
   saleor-db:
@@ -107,3 +157,5 @@ volumes:
 networks:
   saleor-backend-tier:
     driver: bridge
+
+
