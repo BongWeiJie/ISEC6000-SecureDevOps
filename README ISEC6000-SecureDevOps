@@ -14,6 +14,6 @@ Summary:
 4) Download Saleor-Platform components into local machine.
 5) Deploy Saleor Dashboard.
 6) Make changes according to Docker best practices.
-7) Commit changes to docker.yml and tagging it with "isec6000-assigment1" in Github.
+7) Commit changes to docker-compose.yml and tagging it with "isec6000-assigment1" in Github.
 8) Scan docker images use with Trivy.
 9) Document scan results and take remedial actions.
