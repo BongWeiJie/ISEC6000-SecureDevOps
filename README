@@ -1,0 +1,21 @@
+ISEC6000-SecureDevOps Assignment 1
+
+This repository stores the codes and configurations for ISEC6000-SecureDevOps Assignment 1. The project focuses on developing and designing microservices-based e-commerce application called Saleor. 
+Saleor is an open-source, Python-based platform that simulates real-world e-commerce solution.
+It is built on microservices architecture, utilizing a backend API, a dynamic React frontend with a dashboard, a PostgreSQL database, and an in-memory Redis cache.
+Google Cloud services, especially, Google Kuberbenetes CLuster (GKE) will also be deployed in this project.
+Saleor Dashboard will be deployed using Docker after certain configurations have been made. 
+These configurations include: changing port to 9002, making best docker practices changes and scanning images for vulnerabilities using Trivy.
+
+Summary:
+1) Fork saleor-platform and rename it to ISEC6000-SecureDevOps.
+2) Create GKE clusters and make changes to config using kubectl.
+3) Deploy pods and ensure the pods are running.
+4) Download Saleor-Platform components into local machine.
+5) Deploy Saleor Dashboard.
+6) Make changes according to Docker best practices.
+7) Commit changes to docker.yml and tagging it with "isec6000-assigment1" in Github.
+8) Scan docker images use with Trivy.
+9) Document scan results and take remedial actions.
+
+
